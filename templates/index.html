@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Startup Profit Predictor</title>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="gradient-bg">
+        <div class="gradient-circle circle-1"></div>
+        <div class="gradient-circle circle-2"></div>
+        <div class="gradient-circle circle-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo-container">
+                <i class="fas fa-chart-line logo-icon"></i>
+                <h1 class="logo-text">Profit<span>Predictor</span></h1>
+            </div>
+            <p class="subtitle">AI-Powered Startup Profit Forecasting</p>
+        </header>
+
+        <!-- Main Card -->
+        <div class="prediction-card">
+            <div class="card-header">
+                <h2><i class="fas fa-calculator"></i> Enter Your Business Metrics</h2>
+                <p>Fill in the details below to get an accurate profit prediction</p>
+            </div>
+
+            <form id="predictionForm" class="prediction-form">
+                <!-- R&D Spend Input -->
+                <div class="input-group">
+                    <label for="rd_spend">
+                        <i class="fas fa-flask"></i>
+                        R&D Spend
+                    </label>
+                    <div class="input-wrapper">
+                        <span class="currency">$</span>
+                        <input 
+                            type="number" 
+                            id="rd_spend" 
+                            name="rd_spend" 
+                            placeholder="0.00" 
+                            step="0.01" 
+                            min="0"
+                            required
+                        >
+                    </div>
+                    <div class="input-hint">Annual research & development investment</div>
+                </div>
+
+                <!-- Administration Input -->
+                <div class="input-group">
+                    <label for="administration">
+                        <i class="fas fa-building"></i>
+                        Administration
+                    </label>
+                    <div class="input-wrapper">
+                        <span class="currency">$</span>
+                        <input 
+                            type="number" 
+                            id="administration" 
+                            name="administration" 
+                            placeholder="0.00" 
+                            step="0.01" 
+                            min="0"
+                            required
+                        >
+                    </div>
+                    <div class="input-hint">Administrative & operational costs</div>
+                </div>
+
+                <!-- Marketing Spend Input -->
+                <div class="input-group">
+                    <label for="marketing_spend">
+                        <i class="fas fa-bullhorn"></i>
+                        Marketing Spend
+                    </label>
+                    <div class="input-wrapper">
+                        <span class="currency">$</span>
+                        <input 
+                            type="number" 
+                            id="marketing_spend" 
+                            name="marketing_spend" 
+                            placeholder="0.00" 
+                            step="0.01" 
+                            min="0"
+                            required
+                        >
+                    </div>
+                    <div class="input-hint">Marketing & advertising budget</div>
+                </div>
+
+                <!-- State Selection -->
+                <div class="input-group">
+                    <label for="state">
+                        <i class="fas fa-map-marker-alt"></i>
+                        State
+                    </label>
+                    <div class="select-wrapper">
+                        <select id="state" name="state" required>
+                            <option value="" disabled selected>Select your state</option>
+                            <option value="california">California</option>
+                            <option value="florida">Florida</option>
+                            <option value="new york">New York</option>
+                        </select>
+                        <i class="fas fa-chevron-down select-arrow"></i>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="predict-btn" id="predictBtn">
+                    <span class="btn-text">Predict Profit</span>
+                    <span class="btn-loader"><i class="fas fa-circle-notch fa-spin"></i></span>
+                </button>
+            </form>
+
+            <!-- Results Section -->
+            <div class="results-section" id="resultsSection">
+                <div class="results-header">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3>Prediction Results</h3>
+                </div>
+                
+                <div class="prediction-result">
+                    <div class="result-label">Estimated Annual Profit</div>
+                    <div class="result-value" id="predictionValue">$0.00</div>
+                </div>
+
+                <div class="input-summary" id="inputSummary">
+                    <h4>Input Summary</h4>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <span class="summary-label">R&D Spend:</span>
+                            <span class="summary-value" id="summaryRd">$0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Administration:</span>
+                            <span class="summary-value" id="summaryAdmin">$0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Marketing:</span>
+                            <span class="summary-value" id="summaryMarketing">$0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">State:</span>
+                            <span class="summary-value" id="summaryState">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="total-spend">
+                    <span>Total Investment:</span>
+                    <strong id="totalSpend">$0</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-brain feature-icon"></i>
+                <h3>ML Powered</h3>
+                <p>Trained on real startup data with 93.6% accuracy</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-bolt feature-icon"></i>
+                <h3>Instant Results</h3>
+                <p>Get predictions in milliseconds</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-mobile-alt feature-icon"></i>
+                <h3>Mobile Friendly</h3>
+                <p>Works perfectly on all devices</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
